@@ -1,0 +1,94 @@
+<!doctype html>
+{% load static%}
+<html lang="en">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{%block title %} Four Corners {% endblock title %} </title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="shortcut icon" href="#">
+
+  <!-- Theme styles -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/theme.min.css' %}">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/font_awesome.min.css' %}">
+
+  <!-- Vendor -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/vendor.min.css' %}">
+
+  <!-- Data Table  -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.dataTables.css' %}">
+</head>
+
+<body>
+  <div class="main-content">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white d-none d-lg-flex">
+      <div class="container-fluid">
+        <img src="{% static 'image/merck_logo.svg' %}" alt="" class="logo" style="width:20%;" />
+      </div>
+    </nav>
+    <div class="container-fluid mt-4 pt-2 mb-6">
+      <!-- header -->
+      <div class="d-md-flex align-items-center">
+        <h3 class="mb-3 mb-md-0">
+          Room occupancy status
+        </h3>
+        <a href="#!" class="ms-auto me-3"></a>
+      </div>
+      <!-- report -->
+      <div id="companies" class="card mt-4">
+        <div class="table-responsive">
+          <table class="table table-sm card-table table-nowrap" id="sensor-table">
+            <thead>
+              <tr><th><a class="sort text-dark" data-sort="item-name" href="#!">Name</a></th>
+                <th>Identifier</th>
+                <th>Status</th>
+                <th>last updated at</th>
+              </tr>
+            </thead>
+            <tbody class="list">
+              {% for room in data %}
+              <tr><td>{{ room.room_name }}</td>
+                <td>{{ room.room }}</td>
+                <td>
+                  {% if room.status == False or room.status == "false" %}
+                  <span style="color:green">Available</span>
+                  {% else %}
+                  <span style="color:red">Busy</span>
+                  {% endif %}
+                </td>
+                <td><a href="#!" class="item-location text-dark">{{ room.created_at }}</a></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- JAVASCRIPT
+  ============================================-->
+
+  <!-- Vendor -->
+  <script src="{% static 'js/vendor.min.js' %}"></script>
+  <!-- Main Theme file -->
+  <script src="{% static 'js/theme.min.js' %}"></script>
+  <!-- Data table -->
+  <script src="{% static 'js/jquery.dataTables.js' %}"></script>
+  <script>
+    $(document).ready( function () { $("#sensor-table").DataTable(); });
+  </script>
+  <script>
+    setTimeout(function () { location.reload() }, 1000 * (60 - d.getSeconds()))
+  </script>
+</body>
+
+</html>

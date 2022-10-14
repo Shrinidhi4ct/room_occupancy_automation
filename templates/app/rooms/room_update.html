@@ -1,0 +1,126 @@
+{% extends '../../base.html' %} {% load static %} {% block title %} Edit Room {% endblock title%}
+{% block styles%} 
+<!-- Image map -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/image_map.css' %}">
+{% endblock styles%}
+{% block content %}
+
+<div class="container-fluid pb-7">
+    <div class="d-flex align-items-start mt-5">
+        <h2 class="mb-0">
+            Edit Room
+        </h2>
+    </div>
+    {% if error %}
+    <div class="alert alert-danger">
+        {{ error }}
+    </div>
+    {% endif %}
+    <div class="row justify-content-center mt-5">
+        <div class="col-12">
+            <form method="POST" enctype='multipart/form-data'>
+                {% csrf_token %}
+                <div class="from-group mt-4 pt-3">
+                    <label class="form-label">
+                        Room name:
+                    </label>
+                    <input type="text" class="form-control" name="name" value="{{room.name}}" required>
+                </div>
+
+                <div class="from-group mt-4 pt-3">
+                    <label class="form-label">
+                        Floor:
+                    </label>
+                    <select class="form-control" name="floor_id" required id="image-mapper-select">
+                        <option value="{{room.floor_id.id}}">{{room.floor_id.name}}</option>
+                        {% for floor in floors %}
+                        <option value="{{floor.id}}" id="{{ floor.image }}">{{ floor.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="container toggle-content">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-md-12" id="image-map-wrapper">
+                              <div id="image-map-container">
+                                <div id="image-map" style="max-width: 100%">
+                                  <span class="glyphicon glyphicon-picture">
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <table class="table" id="image-mapper-table">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <select name="im[0][shape]" class="form-control input-sm" name="room_size">
+                                <option value="{{room.room_size}}">{{room.room_size}}</option>
+                                  <option value="">---
+                                  </option>
+                                  <option value="rect">Rect
+                                  </option>
+                                  <option value="poly" selected>Poly
+                                  </option>
+                                  <option value="circle">Circle
+                                  </option>
+                                </select>
+                              </td>
+                             
+                              <td>
+                                <button class="btn btn-primary remove-row" name="im[0][remove]">
+                                  clear
+                                </button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label class="form-label">
+                            Room Co-Ordinates:
+                        </label>
+                        <textarea id="code" class="form-control", name="room_coords">{{room.room_coords}}</textarea>
+                    </div>
+                  </div>
+
+                <div class="from-group mt-4">
+                    <label class="form-label">
+                        Room description:
+                    </label>
+                    <textarea rows="4" class="form-control" name="description" required>{{room.description}}</textarea>
+                </div>
+
+                <div class="from-group mt-4 pt-3">
+                    <label class="form-label">
+                        Room Identifier:
+                    </label>
+                    <input type="text" class="form-control" name="room_identifier" value="{{room.room_identifier}}"
+                        required>
+                </div>
+
+                <div class="d-grid gap-3 mt-5">
+                    <button class="btn btn-primary btn-lg hover-lift-light" type="submit">Save changes</button>
+                    <a class="btn btn-link" href="{% url 'rooms'%}">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+{% block scripts%}
+<!-- Image map -->
+<script src="{% static 'js/image_map.js' %}"></script>
+<script>
+    (function($){
+      $(document).trigger('init');
+    }
+    )(jQuery);
+  </script>
+{% endblock scripts%}

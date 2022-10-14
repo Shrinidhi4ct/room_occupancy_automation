@@ -1,0 +1,75 @@
+{% extends '../base.html' %} {% load static %} {% block title %} Dashboard {% endblock title%}
+{% block content %}
+
+<div class="container-fluid mt-4 mt-md-5 mb-6">
+    <div class="row mt-4">
+        <div class="col-lg-6 col-xxl-3">
+            <div class="statcard bg-white border py-4">
+                <h3 class="statcard-value">
+                    {{available}}
+                    <span class="statcard-change text-success ms-auto">
+                        <span class="svg-icon svg-icon-sm text-success relative-top--2">
+                            <i class="fas fa-wifi"></i>
+                        </span>
+                    </span>
+                </h3>
+                <span class="statcard-label text-dark">Availble Rooms</span>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xxl-3 mt-3 mt-lg-0">
+            <div class="statcard bg-white border py-4">
+                <h3 class="statcard-value">
+                    {{occupied}}
+                    <span class="statcard-change text-success ms-auto">
+                        <span class="svg-icon svg-icon-sm text-success relative-top--2">
+                            <i class="fas fa-wifi-slash"></i>
+                        </span>
+                    </span>
+                </h3>
+                <span class="statcard-label text-dark">Occupied Rooms</span>
+            </div>
+        </div>
+        <!-- <div class="col-lg-6 col-xxl-3 mt-3 mt-xxl-0">
+            <div class="statcard bg-white border py-4">
+                <h3 class="statcard-value">
+                    132,938
+                    <span class="statcard-change text-success ms-auto">
+                        <span class="svg-icon svg-icon-sm text-success relative-top--2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+                                <title>ionicons-v5-c</title>
+                                <polyline points="352 144 464 144 464 256"
+                                    style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" />
+                                <path
+                                    d="M48,368,169.37,246.63a32,32,0,0,1,45.26,0l50.74,50.74a32,32,0,0,0,45.26,0L448,160"
+                                    style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" />
+                            </svg>
+                        </span>
+                    </span>
+                </h3>
+                <span class="statcard-label text-dark">lorem ipsum</span>
+            </div>
+        </div> -->
+        <!-- <div class="col-lg-6 col-xxl-3 mt-3 mt-xxl-0">
+            <div class="statcard bg-white border py-4">
+                <h3 class="statcard-value">
+                    129
+                    <span class="statcard-change text-danger ms-auto">
+                        <span class="svg-icon svg-icon-sm text-danger relative-top--2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+                                <title>ionicons-v5-c</title>
+                                <polyline points="352 368 464 368 464 256"
+                                    style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" />
+                                <path
+                                    d="M48,144,169.37,265.37a32,32,0,0,0,45.26,0l50.74-50.74a32,32,0,0,1,45.26,0L448,352"
+                                    style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" />
+                            </svg>
+                        </span>
+                    </span>
+                </h3>
+                <span class="statcard-label text-dark">lorem ipsum</span>
+            </div>
+        </div> -->
+    </div>
+</div>
+</div>
+{% endblock content %}

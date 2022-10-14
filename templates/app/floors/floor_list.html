@@ -1,0 +1,80 @@
+{% extends '../../base.html' %} {% load static %} {% block title %} Floors {% endblock title%}
+{% block content %}
+
+<div class="container-fluid mt-4 pt-2 mb-6">
+  <!-- header -->
+  <div class="d-md-flex align-items-center">
+    <h3 class="mb-3 mb-md-0">
+      Floors
+    </h3>
+    <a href="#!" class="ms-auto me-3"></a>
+    <a href="{% url 'floor_add' %}" class="btn btn-purple hover-lift-light shadow-light-sm">
+      <span class="svg-icon svg-icon-sm text-white me-1">
+        <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+          <title>ionicons-v5-a</title>
+          <line x1="256" y1="112" x2="256" y2="400"
+            style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" />
+          <line x1="400" y1="256" x2="112" y2="256"
+            style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" />
+        </svg>
+      </span>
+      Add New Floor
+    </a>
+  </div>
+
+
+  <!-- report -->
+  <div id="companies" class="card mt-4">
+
+
+    <div class="table-responsive">
+      <table class="table table-sm card-table table-nowrap">
+        <thead>
+          <tr>
+            <th>
+              <a class="sort text-dark" data-sort="item-name" href="#!">Name</a>
+            </th>
+            <th>
+              Created at
+            </th>
+            <th>
+              Action
+            </th>
+            <th>&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody class="list">
+          {% if object_list %}
+          {% for floor in object_list %}
+          <tr>
+            <td>
+              {{ floor.name }}
+            </td>
+            <td>
+              <a href="#!" class="item-location text-dark">{{ floor.created_at }}</a>
+            </td>
+            <td>
+              <a class="btn btn-primary" href="{% url 'floor_update' floor.id %}">Edit</a>
+              <a class="btn btn-danger" href="{% url 'floor_delete' floor.id %}">Delete</a>
+            </td>
+          </tr>
+
+          {% endfor %}
+
+          {% else %}
+          <tr>
+            <td colspan="5">No floors found.</td>
+          </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+</div>
+
+
+
+{% endblock %}
